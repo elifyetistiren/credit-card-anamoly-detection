@@ -1,5 +1,7 @@
 # Credit-Card-Anamoly-detection
 
+![A_transparent_logo_for_a_credit_card_fraud_detecti](https://github.com/user-attachments/assets/d90fcff4-b5f3-48b0-a7c8-daae2516f919)
+
 ## 📝 Project Background and Overview
 
 With the rapid growth of digital transactions, credit card fraud has become a pressing issue for financial institutions and payment processors. Detecting fraudulent activity in real time is essential to minimize financial losses and protect customer trust.
