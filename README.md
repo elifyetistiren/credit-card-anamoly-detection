@@ -1,6 +1,8 @@
 # Credit-Card-Anamoly-detection
 
-![A_transparent_logo_for_a_credit_card_fraud_detecti](https://github.com/user-attachments/assets/d90fcff4-b5f3-48b0-a7c8-daae2516f919)
+<img src="https://github.com/user-attachments/assets/d90fcff4-b5f3-48b0-a7c8-daae2516f919" width="500" />
+
+
 
 ## 📝 Project Background and Overview
 
@@ -33,6 +35,8 @@ An interactive dashboard complements the analysis by surfacing actionable fraud 
 
 This end-to-end fraud detection solution not only uncovers vulnerabilities in transaction data but also empowers stakeholders with actionable insights and model-backed risk indicators through a streamlined, code-driven analytical workflow.
 
+
+<img src="https://github.com/user-attachments/assets/138be3fb-89de-443f-8aef-6d5cc0b823fe" width="800" />
 ---
 
 ## 🧰 Technology Stack
@@ -77,6 +81,10 @@ This end-to-end fraud detection solution not only uncovers vulnerabilities in tr
 
 - **Review the Dashboard**  
   - Open `dashboard.png` or the provided `.pbix` file to view the Power BI fraud dashboard.
+ 
+<img src="https://github.com/user-attachments/assets/c2582f67-9b45-48c7-a609-594e8d2caaf8" width="1000" />
+  
+
 
 ---
 ## 📚 Data Structure
@@ -169,7 +177,7 @@ This project combines **supervised classification** and **unsupervised anomaly d
   - F1-score: ~0.05
   - Extremely high false positive rate → low practical usability.
 
----
+<img src="https://github.com/user-attachments/assets/7fec4576-6cef-4af7-a380-71f0bb59634a" width="800" />
 
 ## 🔧 Hyperparameter Tuning
 
