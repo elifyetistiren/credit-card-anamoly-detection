@@ -50,7 +50,7 @@ This end-to-end fraud detection solution not only uncovers vulnerabilities in tr
   Designed for reusability and production readiness.
 
 - **SQL Queries**  
-  Includes `.sql` files or embedded queries for data analysis and feature generation (e.g., fraud trends, transaction stats by class).  
+  Includes `.sql` files or embedded queries for data analysis and feature generation (e.g., fraud trends, transaction stats by class).  Used to get the subset data from large dataset population to train on models.
   Highlights proficiency in SQL for fraud data mining.
 
 - **Power BI Dashboard**  
@@ -107,6 +107,9 @@ It includes **284,807 transactions**, with only **492 labeled as fraudulent**, m
 | `Amount`        | Float         | Transaction amount in Euros |
 | `Class`         | Integer       | Indicator of fraud (`0 = Legitimate`, `1 = Fraudulent`) |
 
+
+![Screenshot 2025-03-25 151249](https://github.com/user-attachments/assets/111122f9-9c9c-4a84-b369-e6cc488cbfba)
+
 ---
 
 ## 🧠 Model Methodology
@@ -120,6 +123,10 @@ This project combines **supervised classification** and **unsupervised anomaly d
   - No missing values were present.
 - Performed data transformations:
   - Log-transformed `Amount` → `Log_Amount` to normalize right-skewed distribution.
+ 
+![image](https://github.com/user-attachments/assets/f114cc95-2b67-4d7e-a3ae-f5cc86b29dcd)
+
+
   - Converted `Time` (in seconds) into derived features:
     - `Hour`: Time of day (0–23).
     - `Day`: Day of the week (0–6).
@@ -127,6 +134,9 @@ This project combines **supervised classification** and **unsupervised anomaly d
 - Addressed extreme **class imbalance** (fraud cases ~0.17%) using:
   - `class_weight="balanced"` in models like Logistic Regression.
   - `scale_pos_weight` in XGBoost.
+
+![image](https://github.com/user-attachments/assets/4f321abd-1ac1-4769-86c1-c6b6429e6446)
+
 
 ### 2. Modeling Techniques
 
@@ -235,7 +245,7 @@ This project combines **supervised classification** and **unsupervised anomaly d
 
 ### Overview of Findings
 
-This credit card fraud detection analysis provides key insights into transaction behaviors, highlighting fraud trends and peak times while emphasizing important transaction features. The goal was to develop a machine learning model capable of accurately identifying fraudulent transactions while minimizing false positives.
+The credit card fraud detection analysis provides key insights into transaction behaviors, highlighting fraud trends and peak times while emphasizing important transaction features. The goal was to develop a machine learning model capable of accurately identifying fraudulent transactions while minimizing false positives.
 
 Given the highly imbalanced nature of the dataset, special techniques were employed to optimize model performance, particularly in fraud detection. The analysis reveals that fraudulent transactions, though rare, follow distinct patterns that can be leveraged for improved fraud detection and prevention.
 
@@ -250,6 +260,9 @@ Given the highly imbalanced nature of the dataset, special techniques were emplo
   Fraud activity peaks at **2 AM (1.71%)**, with additional spikes at **11 AM, 12 PM, and 6 PM**.  
   These patterns suggest fraud is more likely during certain hours of the day.
 
+![image](https://github.com/user-attachments/assets/7af56843-d266-49ec-aa42-c6df0feb4978)
+
+
 - **Fraud by Day**:  
   Fraud occurs more frequently on **Day 0 (0.19%)** compared to **Day 1 (0.15%)**, indicating a slight decrease in fraud over time.
 
@@ -257,16 +270,30 @@ Given the highly imbalanced nature of the dataset, special techniques were emplo
   - While most transactions are of lower value, fraudulent ones are more evenly distributed across the amount range.  
   - Fraud rates increase significantly for amounts **over $500**.
 
+![image](https://github.com/user-attachments/assets/4ef9d9a9-2b85-4999-81ac-91c193ea77c5)
+
+
 - **Key Fraud Indicators**:  
   Features such as V4, V14, and V12 show strong associations with fraudulent transactions.  
   Notably, V17 has the highest correlation (0.301) with fraud, making it a critical feature for detection.
+
+![image](https://github.com/user-attachments/assets/f86f8b80-7f67-4c2d-b651-0036c17bff6e)
+
+
+
 
 - **Model Evaluation**:  
   XGBoost, with a fine-tuned decision threshold of 0.70, emerged as the top-performing model.  
   It achieved a precision of 99% and recall of 79%, effectively balancing accuracy and false positive reduction.
 
+![image](https://github.com/user-attachments/assets/1cda4108-ce25-4b00-9d0b-ed5f8d9925c5)
+
+
+
 - **ROC-AUC**:  
   The model scored a high ROC-AUC of 0.98, demonstrating strong capability in distinguishing fraudulent from legitimate transactions.
+
+![image](https://github.com/user-attachments/assets/adb423a7-05a2-42c4-ad6f-cfecf75f62fb)
 
   ---
 
@@ -286,10 +313,16 @@ Given the highly imbalanced nature of the dataset, special techniques were emplo
   In contrast, **non-fraudulent transactions** are mostly concentrated in lower amounts.
 - As the transaction amount increases, the **fraud rate also increases**, especially for amounts **over $500**, which show significantly higher fraud rates.
 
+![image](https://github.com/user-attachments/assets/73cdfb98-ebfe-4798-8314-e0cfb6947908)
+
+
 ### 4. Feature Distribution
 - Several features, including **V4, V10, V12, V14, and V17**, display clear separation between fraud and non-fraud distributions, indicating potential as strong fraud indicators.
 - Features like **V1, V7, and V13** exhibit noticeable skewness in the fraudulent class, which could benefit models sensitive to distribution shape.
 - **Principal Component Analysis (PCA)** reveals that certain features (e.g., V4, V17) have high correlations with fraud, reinforcing their usefulness in fraud detection.
+
+![image](https://github.com/user-attachments/assets/8afa5842-c68f-4065-bc22-4f8318b00a32)
+
 
 ### 5. Fraud Trends by Time
 - **Fraud Rate by Hour**: Fraud spikes notably at **2 AM (1.71%)** and remains elevated between **2–5 AM**.  
@@ -297,13 +330,18 @@ Given the highly imbalanced nature of the dataset, special techniques were emplo
 - **Fraud Rate by Day**:  
   - **Day 0**: Higher fraud rate at **0.19%**  
   - **Day 1**: Slightly lower fraud rate at **0.15%**
+ 
+  - ![image](https://github.com/user-attachments/assets/2f79efb8-4386-47dc-b355-927dbfa6b33f)
+
 
 ### 6. Feature Correlation
 - Features like **V4, V14, V12**, and **V17** show **strong correlations with fraud**.  
   For example, **V17** has a correlation of **0.301**, highlighting its significant predictive power.
 - The **Amount** feature shows little correlation with fraud, suggesting fraud detection depends on more complex feature interactions.
 
-### 7. Fraud Detection Insights
+![image](https://github.com/user-attachments/assets/12f07a8d-09ef-4217-b832-6ed589c68d92)
+
+### 7. Individual Fraud Events  
 - **Fraudulent Transaction Amount by Hour**: Fraudulent transactions occur across all hours, with no clear peak for large-value fraud.
 - **Fraudulent Transactions by Amount Range**:  
   Most fraudulent transactions involve amounts **under $10**, but fraud rates rise significantly for transactions **above $500**.
@@ -311,6 +349,9 @@ Given the highly imbalanced nature of the dataset, special techniques were emplo
 ### 8. Fraud Count by Time of Day
 - The highest number of fraudulent transactions occurs in the **evening (54.12%)**, followed by the **morning (15.01%)**.  
   Fraud is least frequent in the **afternoon (12.94%)** and **night (11.68%)**.
+  
+![image](https://github.com/user-attachments/assets/e55e9c17-65b5-49b7-b4d3-4929253719b3)
+
 
 ### 9. Summary Statistics
 - **Mean Transaction Amount (Non-Fraudulent)**: `$88.29`  
